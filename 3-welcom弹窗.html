@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>123</div>
+  <script>
+
+    // 获取当前日期
+    function getCurrentDate () {
+      const now = new Date()
+      return now.getFullYear() + '-' + now.getMonth() + '-' + now.getDate()
+    }
+
+    // 获取上次访问的日期
+    function getLastVisit () {
+      return localStorage.getItem('lastVisit')
+    }
+
+    // 判断是否是新的一天
+    function isNewDay (today, lastvisit) {
+      return today !== lastvisit
+    }
+
+    // 设置访问的日期
+    function setLastVisit (today) {
+      localStorage.setItem('lastVisit', today)
+    }
+
+    // 检查是否需要显示欢迎弹窗
+    function checkWelcom () {
+      const today = getCurrentDate()
+      const lastVisit = getLastVisit()
+      if (!lastVisit || isNewDay(today, lastVisit)) {
+        alert('Welcome')
+        setLastVisit(today)
+      }
+    }
+
+    // 检查是否需要显示欢迎弹窗
+    window.addEventListener('load', checkWelcom)
+  </script>
+</body>
+
+</html>
